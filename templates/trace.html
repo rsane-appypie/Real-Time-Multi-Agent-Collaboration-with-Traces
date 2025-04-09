@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Multi-Agent</title>
+    <script src="{% static 'js/trace.js' %}"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2rem;
+        }
+
+        #output {
+            border: 1px solid #ccc;
+            padding: 1rem;
+            min-height: 100px;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>🧭 Planner</h2>
+    <form id="queryForm">
+        <label for="userInput">Enter your query:</label><br>
+        <input type="text" id="userInput" name="userInput"
+            placeholder="e.g. Who was the first president of the united states?" size="60">
+        <button type="submit">Submit</button>
+    </form>
+
+    <h3>📝 Output:</h3>
+    <div id="output">Waiting for input...</div>
+</body>
+
+</html>
