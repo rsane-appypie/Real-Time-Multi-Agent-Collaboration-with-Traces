@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
         formData.append('csrfmiddlewaretoken', document.querySelector('[name=csrfmiddlewaretoken]').value);
 
         try {
-            const response = await fetch('/plan_trip', {
+            const response = await fetch('/execute_query', {
                 method: 'POST',
                 body: formData,
                 headers: {

@@ -6,7 +6,7 @@ import os
 def home(request):
     return render(request, 'trace.html')
 
-async def plan_trip(request):
+async def execute_query(request):
     if request.method != 'POST':
         return JsonResponse({'error': 'Method not allowed'}, status=405)
     
