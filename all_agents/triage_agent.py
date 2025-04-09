@@ -1,7 +1,7 @@
 from agents import Agent, InputGuardrail
-from history_tutor_agent import history_tutor_agent
-from math_tutor_agent import math_tutor_agent
-from guardrail import homework_guardrail
+from .history_tutor_agent import history_tutor_agent
+from .math_tutor_agent import math_tutor_agent
+from .guardrail import homework_guardrail
 
 triage_agent = Agent(
     name="Triage Agent",

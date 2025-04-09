@@ -1,5 +1,5 @@
 from agents import Runner
-from triage_agent import triage_agent
+from .triage_agent import triage_agent
 import asyncio
 
 async def main_function(user_input):

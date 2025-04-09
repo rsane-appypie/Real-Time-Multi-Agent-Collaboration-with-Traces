@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from all_agents.base import main_function
 
 def home(request):
-    return render(request, '../static/js/trace.js')
+    return render(request, 'trace.html')
 
 def plan_trip(request):
     user_input = request.GET.get('user_input', '')
