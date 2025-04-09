@@ -42,26 +42,63 @@
         button:hover {
             background-color: #0056b3;
         }
+
+        .clear-api-key {
+            background-color: #dc3545;
+            margin-left: 0rem;
+        }
+
+        .clear-api-key:hover {
+            background-color: #c82333;
+        }
+
+        .api-key-saved {
+            color: #28a745;
+            font-size: 0.9em;
+            margin-top: 0.5rem;
+        }
+
+        .query-section {
+            display: none;
+            margin-top: 3rem;
+        }
+
+        .save-api-key {
+            background-color: #28a745;
+        }
+
+        .save-api-key:hover {
+            background-color: #218838;
+        }
     </style>
 </head>
 
 <body>
-    <h2>🧭 Planner</h2>
-    <form id="queryForm">
+    <h2>🧭 Real-Time Multi-Agent Collaboration</h2>
+    <form id="apiKeyForm">
         {% csrf_token %}
         <div class="input-group">
             <label for="apiKey">OpenAI API Key:</label><br>
             <input type="password" id="apiKey" name="apiKey" placeholder="Enter your OpenAI API key" required>
+            <div id="apiKeySaved" class="api-key-saved" style="display: none;">API key saved ✓</div>
         </div>
-        <div class="input-group">
-            <label for="userInput">Enter your query:</label><br>
-            <input type="text" id="userInput" name="userInput" placeholder="e.g. Who was the first president of the united states?" required>
-        </div>
-        <button type="submit">Submit</button>
+        <button type="button" id="saveApiKey" class="save-api-key">Save API Key</button>
+        <button type="button" id="clearApiKey" class="clear-api-key" style="display: none;">Clear API Key</button>
     </form>
 
-    <h3>📝 Output:</h3>
-    <div id="output">Waiting for input...</div>
+    <div id="querySection" class="query-section">
+        <form id="queryForm">
+            {% csrf_token %}
+            <div class="input-group">
+                <label for="userInput">Enter your query:</label><br>
+                <input type="text" id="userInput" name="userInput" placeholder="e.g. Who was the first president of the united states?" required>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+
+        <h3 style="margin-top: 3rem;">📝 Output:</h3>
+        <div id="output">Waiting for input...</div>
+    </div>
 </body>
 
 </html>
