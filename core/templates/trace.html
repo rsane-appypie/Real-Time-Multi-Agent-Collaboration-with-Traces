@@ -23,7 +23,8 @@
             margin-bottom: 1rem;
         }
 
-        input[type="text"] {
+        input[type="text"],
+        input[type="password"] {
             padding: 0.5rem;
             width: 100%;
             max-width: 600px;
@@ -50,7 +51,7 @@
         {% csrf_token %}
         <div class="input-group">
             <label for="apiKey">OpenAI API Key:</label><br>
-            <input type="text" id="apiKey" name="apiKey" placeholder="Enter your OpenAI API key" required>
+            <input type="password" id="apiKey" name="apiKey" placeholder="Enter your OpenAI API key" required>
         </div>
         <div class="input-group">
             <label for="userInput">Enter your query:</label><br>
