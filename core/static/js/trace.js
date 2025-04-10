@@ -99,7 +99,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     queryForm.addEventListener("submit", async (e) => {
         e.preventDefault();
-        output.innerHTML = "⏳ Generating answer...";
+        output.innerHTML = `
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <div class="loading"></div>
+                <span>Generating answer...</span>
+            </div>
+        `;
 
         const formData = new FormData();
         formData.append('prompt', userInput.value);
@@ -118,12 +123,24 @@ document.addEventListener("DOMContentLoaded", () => {
             const data = await response.json();
             
             if (response.ok) {
-                output.innerHTML = `<pre>${data.output}</pre>`;
+                // Render markdown content
+                const renderedMarkdown = marked.parse(data.output);
+                output.innerHTML = renderedMarkdown;
             } else {
-                output.innerHTML = `<pre style="color: red;">Error: ${data.error}</pre>`;
+                output.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 0.5rem; color: var(--danger-color);">
+                        <span>❌</span>
+                        <span>Error: ${data.error}</span>
+                    </div>
+                `;
             }
         } catch (error) {
-            output.innerHTML = `<pre style="color: red;">Error: ${error.message}</pre>`;
+            output.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 0.5rem; color: var(--danger-color);">
+                    <span>❌</span>
+                    <span>Error: ${error.message}</span>
+                </div>
+            `;
         }
     });
 });
