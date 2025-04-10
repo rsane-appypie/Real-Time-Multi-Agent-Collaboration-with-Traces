@@ -140,6 +140,81 @@
             border-radius: 8px;
             border: 1px solid var(--border-color);
             min-height: 200px;
+            max-height: 600px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        /* Enhanced styling for markdown elements */
+        #output h1, #output h2, #output h3, #output h4, #output h5, #output h6 {
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        
+        #output h1 { font-size: 1.8rem; }
+        #output h2 { font-size: 1.6rem; }
+        #output h3 { font-size: 1.4rem; color: #2563eb; }
+        #output h4 { font-size: 1.2rem; }
+        
+        #output p {
+            margin: 0.8rem 0;
+        }
+        
+        #output strong {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        #output em {
+            font-style: italic;
+            color: #555;
+        }
+        
+        #output ul, #output ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+        
+        #output li {
+            margin: 0.5rem 0;
+        }
+        
+        #output a {
+            color: #2563eb;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+        
+        #output a:hover {
+            border-bottom-color: #2563eb;
+        }
+        
+        #output hr {
+            margin: 1.5rem 0;
+            border: 0;
+            height: 1px;
+            background-color: var(--border-color);
+        }
+        
+        /* Code highlighting improvements */
+        #output pre code {
+            display: block;
+            overflow-x: auto;
+            padding: 1rem;
+            background-color: #1e293b;
+            color: #f8fafc;
+            border-radius: 6px;
+            line-height: 1.5;
+        }
+        
+        /* Step lists styling */
+        #output ol li {
+            padding-left: 0.5rem;
         }
 
         #output pre {

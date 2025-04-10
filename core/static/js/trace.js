@@ -9,6 +9,40 @@ document.addEventListener("DOMContentLoaded", () => {
     const apiKeySaved = document.getElementById("apiKeySaved");
     const querySection = document.getElementById("querySection");
 
+    // Configure marked options for better HTML rendering
+    marked.setOptions({
+        breaks: true,          // Convert line breaks to <br>
+        gfm: true,             // Enable GitHub Flavored Markdown
+        headerIds: true,       // Enable header IDs for linking
+        mangle: false,         // Don't mangle header IDs
+        smartLists: true,      // Use smarter list behavior
+        smartypants: true,     // Use smart typography like quotes and dashes
+        xhtml: false,          // Don't output XHTML compliant tags
+        highlight: function(code, lang) {
+            // Simple syntax highlighting
+            if (lang === 'js' || lang === 'javascript') {
+                code = code.replace(/\b(const|let|var|function|return|if|else|for|while)\b/g, 
+                    '<span style="color: #569cd6;">$1</span>');
+            }
+            return code;
+        }
+    });
+
+    // Function to enhance LaTeX-like expressions without MathJax
+    function processLatexExpressions(text) {
+        // Replace \(...\) with styled spans
+        text = text.replace(/\\\(([^)]+)\\\)/g, '<span style="font-style: italic; color: #224B7A;">$1</span>');
+        
+        // Replace $...$ with styled spans
+        text = text.replace(/\$([^$]+)\$/g, '<span style="font-style: italic; color: #224B7A;">$1</span>');
+        
+        // Replace \[...\] with styled divs
+        text = text.replace(/\\\[([\s\S]*?)\\\]/g, 
+            '<div style="text-align: center; padding: 8px; margin: 12px 0; font-style: italic; color: #224B7A; background-color: #f8f9fa; border-radius: 4px;">$1</div>');
+        
+        return text;
+    }
+
     /**
      * Sets a cookie with the given name, value, and expiration days
      * @param {string} name - The name of the cookie
@@ -123,9 +157,17 @@ document.addEventListener("DOMContentLoaded", () => {
             const data = await response.json();
             
             if (response.ok) {
-                // Render markdown content
-                const renderedMarkdown = marked.parse(data.output);
+                // Process LaTeX-like expressions first
+                const processedText = processLatexExpressions(data.output);
+                
+                // Then render markdown to HTML
+                const renderedMarkdown = marked.parse(processedText);
+                
+                // Set the HTML content
                 output.innerHTML = renderedMarkdown;
+                
+                // Auto-scroll to top of output after loading
+                output.scrollTop = 0;
             } else {
                 output.innerHTML = `
                     <div style="display: flex; align-items: center; gap: 0.5rem; color: var(--danger-color);">
