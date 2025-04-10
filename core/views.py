@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from all_agents.base import main_function
+from all_agents.master_triage_agent import main_function
 import os
 
 def home(request):
