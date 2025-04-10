@@ -9,7 +9,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const apiKeySaved = document.getElementById("apiKeySaved");
     const querySection = document.getElementById("querySection");
 
-    // Function to set cookie
+    /**
+     * Sets a cookie with the given name, value, and expiration days
+     * @param {string} name - The name of the cookie
+     * @param {string} value - The value to store in the cookie
+     * @param {number} days - Number of days until the cookie expires
+     */
     function setCookie(name, value, days) {
         let expires = "";
         if (days) {
@@ -20,7 +25,11 @@ document.addEventListener("DOMContentLoaded", () => {
         document.cookie = name + "=" + (value || "") + expires + "; path=/";
     }
 
-    // Function to get cookie
+    /**
+     * Retrieves the value of a cookie by its name
+     * @param {string} name - The name of the cookie to retrieve
+     * @returns {string|null} The cookie value or null if not found
+     */
     function getCookie(name) {
         const nameEQ = name + "=";
         const ca = document.cookie.split(';');
@@ -32,12 +41,17 @@ document.addEventListener("DOMContentLoaded", () => {
         return null;
     }
 
-    // Function to delete cookie
+    /**
+     * Deletes a cookie by setting its expiration date to the past
+     * @param {string} name - The name of the cookie to delete
+     */
     function deleteCookie(name) {
         document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     }
 
-    // Function to show query section
+    /**
+     * Shows the query section and hides the API key input section
+     */
     function showQuerySection() {
         querySection.style.display = 'block';
         apiKeyInput.style.display = 'none';
@@ -47,7 +61,9 @@ document.addEventListener("DOMContentLoaded", () => {
         apiKeySaved.style.display = 'block';
     }
 
-    // Function to hide query section
+    /**
+     * Hides the query section and shows the API key input section
+     */
     function hideQuerySection() {
         querySection.style.display = 'none';
         apiKeyInput.style.display = 'block';
